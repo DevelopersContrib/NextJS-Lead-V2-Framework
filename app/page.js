@@ -1,113 +1,355 @@
-import Image from 'next/image'
+import Image from 'next/image';
+import Logo from '@/components/logo';
+import Container from '@/components/Container';
+import Footer from '@/components/Footer';
+import { getData, getDomain, getTopsites, getScript } from '@/lib/data';
+import { FaMapLocationDot, FaUser } from "react-icons/fa6";
 
-export default function Home() {
+export default async function Home() {
+  const c = await getData();
+  const domain = getDomain();
+  const link = 'https://domaindirectory.com/servicepage/?domain=javapoint.com';
+  const background = c.data.background_url !== undefined && c.data.background_url !== null ? c.data.background_url : 'https://cdn.vnoc.com/background/domains1.jpg';
+  const description = c.data.description;
+  const title = c.data.title;
+  const twitter_url = c.data.twitter;
+  const fb_url = c.data.fb;
+  const linkedin_url = c.data.linkedin;
+  const follow_link = "https://www.contrib.com/signup/follow/" + domain;
+  const html = await getScript("https://e7lq80c199.execute-api.us-west-2.amazonaws.com/api1?key=5c1bde69a9e783c7edc2e603d8b25023&request=getcontent&url=" + domain)
+
+  const capitalizeDomain = domain.charAt(0).toUpperCase() + domain.slice(1).toLowerCase()
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
+    <>
+      <section className="tw-bg-[#121212] tw-py-6 tw-text-white tw-text-sm tw-font-bold tw-relative">
+        <div className="container text-center">
+          We have interesting opportunities for work, sponsors and partnerships.
+          <a href={link} target="_blank" className="ms-2 tw-py-[3px!important] tw-text-blue-600 tw-no-underline">Inquire now</a>
+        </div>
+        <div className="d-none d-lg-block d-sm-none tw-absolute tw-right-[0.5%] tw-top-[5%]">
+          <a href="https://www.contrib.com/signup/firststep?domain=mrhog.com" target="_blank" className="btn btn-outline-secondary fnt-500 text-white">
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+              src="https://cdn.vnoc.com/logos/badge-contrib-3.png"
+              width="48"
+              height="48"
+              className="me-1"
+              alt=''
             />
+            Claim Your CTB Now!
           </a>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      </section>
+      <section
+        style={{ backgroundImage: `url('${background}')` }}
+        className="tw-bg-cover tw-bg-no-repeat tw-relative tw-text-white tw-bg-[50%] tw-py-[150px] tw-flex tw-w-full tw-items-center"
+      >
+        <div className="tw-bg-[rgba(0,0,0,0.55)] tw-top-0 tw-left-0 tw-right-0 tw-bottom-0 tw-absolute"></div>
+        <div className="container tw-relative">
+          <div className="row tw-mb-8">
+            <div className="col-xl-12 tw-text-center">
+              <Logo domain={capitalizeDomain} logo={c.data.logo} />
+              <h5 className='tw-font-semibold text-capitalize mb-3'>
+                {title}
+              </h5>
+            </div>
+            <div className="col-xl-12">
+              <div className="row">
+                <div className="col-xl-6 offset-xl-3">
+                  <Container domain={capitalizeDomain} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className='tw-py-24'>
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-12">
+              <h2 className='tw-font-medium tw-text-4xl text-center mb-5'>
+                {capitalizeDomain} Opportunity
+              </h2>
+            </div>
+            <div className="col-xl-4">
+              <div className="card text-bg-light mb-3">
+                <div className="card-header">Latest Contributors</div>
+                <div className="card-body tw-overflow-y-auto tw-max-h-[300px]">
+                  <ul className="list-unstyled">
+                    <li>
+                      <div className="d-flex mb-3">
+                        <div className="flex-shrink-0">
+                          <Image
+                            src="https://www.contrib.com/img/avatar0.jpg"
+                            width={40}
+                            height={40}
+                            alt=""
+                            className="tw-object-cover"
+                          />
+                        </div>
+                        <div className="flex-grow-1 ms-3">
+                          <ul className="list-inline mb-1">
+                            <li className="list-inline-item">
+                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white">
+                                Role Name
+                              </div>
+                            </li>
+                            <li className="list-inline-item">
+                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white ">
+                                Industry Name
+                              </div>
+                            </li>
+                          </ul>
+                          <p className="tw-text-xs mb-0">
+                            <FaMapLocationDot className="tw-mr-2 tw-text-gray-400" />
+                            Country
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="d-flex mb-3">
+                        <div className="flex-shrink-0">
+                          <Image
+                            src="https://www.contrib.com/img/avatar0.jpg"
+                            width={40}
+                            height={40}
+                            alt=""
+                            className="tw-object-cover"
+                          />
+                        </div>
+                        <div className="flex-grow-1 ms-3">
+                          <ul className="list-inline mb-1">
+                            <li className="list-inline-item">
+                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white">
+                                Role Name
+                              </div>
+                            </li>
+                            <li className="list-inline-item">
+                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white ">
+                                Industry Name
+                              </div>
+                            </li>
+                          </ul>
+                          <p className="tw-text-xs mb-0">
+                            <FaMapLocationDot className="tw-mr-2 tw-text-gray-400" />
+                            Country
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="d-flex mb-3">
+                        <div className="flex-shrink-0">
+                          <Image
+                            src="https://www.contrib.com/img/avatar0.jpg"
+                            width={40}
+                            height={40}
+                            alt=""
+                            className="tw-object-cover"
+                          />
+                        </div>
+                        <div className="flex-grow-1 ms-3">
+                          <ul className="list-inline mb-1">
+                            <li className="list-inline-item">
+                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white">
+                                Role Name
+                              </div>
+                            </li>
+                            <li className="list-inline-item">
+                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white ">
+                                Industry Name
+                              </div>
+                            </li>
+                          </ul>
+                          <p className="tw-text-xs mb-0">
+                            <FaMapLocationDot className="tw-mr-2 tw-text-gray-400" />
+                            Country
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="d-flex mb-3">
+                        <div className="flex-shrink-0">
+                          <Image
+                            src="https://www.contrib.com/img/avatar0.jpg"
+                            width={40}
+                            height={40}
+                            alt=""
+                            className="tw-object-cover"
+                          />
+                        </div>
+                        <div className="flex-grow-1 ms-3">
+                          <ul className="list-inline mb-1">
+                            <li className="list-inline-item">
+                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white">
+                                Role Name
+                              </div>
+                            </li>
+                            <li className="list-inline-item">
+                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white ">
+                                Industry Name
+                              </div>
+                            </li>
+                          </ul>
+                          <p className="tw-text-xs mb-0">
+                            <FaMapLocationDot className="tw-mr-2 tw-text-gray-400" />
+                            Country
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="d-flex mb-3">
+                        <div className="flex-shrink-0">
+                          <Image
+                            src="https://www.contrib.com/img/avatar0.jpg"
+                            width={40}
+                            height={40}
+                            alt=""
+                            className="tw-object-cover"
+                          />
+                        </div>
+                        <div className="flex-grow-1 ms-3">
+                          <ul className="list-inline mb-1">
+                            <li className="list-inline-item">
+                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white">
+                                Role Name
+                              </div>
+                            </li>
+                            <li className="list-inline-item">
+                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white ">
+                                Industry Name
+                              </div>
+                            </li>
+                          </ul>
+                          <p className="tw-text-xs mb-0">
+                            <FaMapLocationDot className="tw-mr-2 tw-text-gray-400" />
+                            Country
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-8">
+              <div className="row">
+                <div className="col-xl-4">
+                  <div className="d-flex mb-3">
+                    <div className="flex-shrink-0">
+                      <Image
+                        src="https://cdn.vnoc.com/icons/icon-50x50-contrib-market2.png"
+                        width={50}
+                        height={50}
+                        alt=""
+                        className="tw-object-cover"
+                      />
+                    </div>
+                    <div className="flex-grow-1 ms-3">
+                      <h5>
+                        Contrib Marketplace
+                      </h5>
+                      <p className='small'>
+                        Browse Jobs, Ideas and Micro Tasks.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4">
+                  <div className="d-flex mb-3">
+                    <div className="flex-shrink-0">
+                      <Image
+                        src="https://cdn.vnoc.com/icons/icon-50x50-contrib-contribute2.png"
+                        width={50}
+                        height={50}
+                        alt=""
+                        className="tw-object-cover"
+                      />
+                    </div>
+                    <div className="flex-grow-1 ms-3">
+                      <h5>
+                        Contribute
+                      </h5>
+                      <p className='small'>
+                        Contribute using your skills, services, apps and/or capital.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4">
+                  <div className="d-flex mb-3">
+                    <div className="flex-shrink-0">
+                      <Image
+                        src="https://cdn.vnoc.com/icons/icon-50x50-contrib-money2.png"
+                        width={50}
+                        height={50}
+                        alt=""
+                        className="tw-object-cover"
+                      />
+                    </div>
+                    <div className="flex-grow-1 ms-3">
+                      <h5>
+                        Contrib Crypto Marketplace
+                      </h5>
+                      <p className='small'>
+                        Contribute to blockchain projects on premium urls today
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-12 tw-text-xl">
+                  We envision people around the world with complementary skills, passion, time and resources coworking online with targeted premium assets just like Freelance.net.
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-12">
+              <marquee className="tw-space-x-2">
+                <a title="Hard.org" href="https://hard.org" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Hard.org </a>
+                <a title="Contingencyfees.com" href="https://contingencyfees.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Contingencyfees.com </a>
+                <a title="Netgrowers.com" href="https://netgrowers.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Netgrowers.com </a>
+                <a title="Bocabello.com" href="https://bocabello.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Bocabello.com </a>
+                <a title="Channelcards.com" href="https://channelcards.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Channelcards.com </a>
+                <a title="Indoorgame.com" href="https://indoorgame.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Indoorgame.com </a>
+                <a title="Miamivipclub.com" href="https://miamivipclub.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Miamivipclub.com </a>
+                <a title="Fardex.com" href="https://fardex.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Fardex.com </a>
+                <a title="Dublinchildcare.com" href="https://dublinchildcare.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Dublinchildcare.com </a>
+                <a title="Issuestv.com" href="https://issuestv.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Issuestv.com </a>
+                <a title="Vbarge.com" href="https://vbarge.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Vbarge.com </a>
+                <a title="Francechannel.com" href="https://francechannel.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Francechannel.com </a>
+                <a title="Elimostaert.com" href="https://elimostaert.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Elimostaert.com </a>
+                <a title="Businessperk.com" href="https://businessperk.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Businessperk.com </a>
+                <a title="Transveg.com" href="https://transveg.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Transveg.com </a>
+              </marquee>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="tw-py-24">
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-12">
+              <h2 className='tw-font-medium tw-text-4xl text-center mb-5'>
+                {capitalizeDomain} Team
+              </h2>
+            </div>
+            <div className="col-xl-12">
+              <p>
+                {capitalizeDomain} is a bit different than most startups. We are small, diverse team working remotely and loving what we do. We only cowork with others who also have this same passion.
+              </p>
+              <p>
+                {capitalizeDomain} seeks to contract and hire the best people and then trust them: it&apos;s the thinking behind the work at their own time policy.
+              </p>
+              <p>
+                The {capitalizeDomain} team loves building things and focus on being the most productive individual, not the amount of time spent in the office. We put a lot of effort into making {capitalizeDomain} a fun place to work for people who like getting things done. So if you&apos;re game with this then enter your email address and be a part of the global team.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <Footer domain={capitalizeDomain} twitter_url={twitter_url} fb_url={fb_url} linkedin_url={linkedin_url} />
+    </>
   )
 }
