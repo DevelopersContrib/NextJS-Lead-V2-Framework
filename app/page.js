@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Logo from '@/components/logo';
 import Container from '@/components/Container';
 import Footer from '@/components/Footer';
+import FeaturedDomain from '@/components/FeaturedDomain';
 import { getData, getDomain, getTopsites, getScript } from '@/lib/data';
 import { FaMapLocationDot, FaUser } from "react-icons/fa6";
 
@@ -307,26 +308,27 @@ export default async function Home() {
             </div>
             <div className="col-xl-12">
               <marquee className="tw-space-x-2">
-                <a title="Hard.org" href="https://hard.org" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Hard.org </a>
-                <a title="Contingencyfees.com" href="https://contingencyfees.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Contingencyfees.com </a>
-                <a title="Netgrowers.com" href="https://netgrowers.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Netgrowers.com </a>
-                <a title="Bocabello.com" href="https://bocabello.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Bocabello.com </a>
-                <a title="Channelcards.com" href="https://channelcards.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Channelcards.com </a>
-                <a title="Indoorgame.com" href="https://indoorgame.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Indoorgame.com </a>
-                <a title="Miamivipclub.com" href="https://miamivipclub.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Miamivipclub.com </a>
-                <a title="Fardex.com" href="https://fardex.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Fardex.com </a>
-                <a title="Dublinchildcare.com" href="https://dublinchildcare.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Dublinchildcare.com </a>
-                <a title="Issuestv.com" href="https://issuestv.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Issuestv.com </a>
-                <a title="Vbarge.com" href="https://vbarge.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Vbarge.com </a>
-                <a title="Francechannel.com" href="https://francechannel.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Francechannel.com </a>
-                <a title="Elimostaert.com" href="https://elimostaert.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Elimostaert.com </a>
-                <a title="Businessperk.com" href="https://businessperk.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Businessperk.com </a>
-                <a title="Transveg.com" href="https://transveg.com" class="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Transveg.com </a>
+                <a title="Hard.org" href="https://hard.org" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Hard.org </a>
+                <a title="Contingencyfees.com" href="https://contingencyfees.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Contingencyfees.com </a>
+                <a title="Netgrowers.com" href="https://netgrowers.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Netgrowers.com </a>
+                <a title="Bocabello.com" href="https://bocabello.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Bocabello.com </a>
+                <a title="Channelcards.com" href="https://channelcards.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Channelcards.com </a>
+                <a title="Indoorgame.com" href="https://indoorgame.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Indoorgame.com </a>
+                <a title="Miamivipclub.com" href="https://miamivipclub.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Miamivipclub.com </a>
+                <a title="Fardex.com" href="https://fardex.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Fardex.com </a>
+                <a title="Dublinchildcare.com" href="https://dublinchildcare.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Dublinchildcare.com </a>
+                <a title="Issuestv.com" href="https://issuestv.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Issuestv.com </a>
+                <a title="Vbarge.com" href="https://vbarge.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Vbarge.com </a>
+                <a title="Francechannel.com" href="https://francechannel.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Francechannel.com </a>
+                <a title="Elimostaert.com" href="https://elimostaert.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Elimostaert.com </a>
+                <a title="Businessperk.com" href="https://businessperk.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Businessperk.com </a>
+                <a title="Transveg.com" href="https://transveg.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Transveg.com </a>
               </marquee>
             </div>
           </div>
         </div>
       </section>
+      <FeaturedDomain domain={capitalizeDomain} />
       <section className="tw-py-24">
         <div className="container">
           <div className="row">
@@ -349,7 +351,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <Footer domain={capitalizeDomain} twitter_url={twitter_url} fb_url={fb_url} linkedin_url={linkedin_url} />
+      <Footer capitalizedomain={capitalizeDomain} domain={domain} twitter_url={twitter_url} fb_url={fb_url} linkedin_url={linkedin_url} />
     </>
   )
 }
