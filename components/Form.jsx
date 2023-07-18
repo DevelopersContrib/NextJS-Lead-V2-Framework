@@ -32,6 +32,7 @@ function LeadForm({ domain, setSuccess }) {
 
 	const handleChange = (e) => {
 		setData({ ...data, [e.target.name]: e.target.value });
+		setEmailExist('')
 	};
 
 
@@ -52,11 +53,15 @@ function LeadForm({ domain, setSuccess }) {
 				setData({ ...data, ['isLoading']: false });
 
 				if (response.ok) {
+					
 					const res = await response.json()
 
-					if (res.status) {
-						setSuccess(true);
-						console.log('done....')
+					console.log(res.lead.success);
+					if(res.lead.success == "success"){
+					  setSuccess(true);
+					  console.log('done....')
+					}else{
+					  setEmailExist(res.lead.success);
 					}
 
 				} else {
@@ -84,6 +89,7 @@ function LeadForm({ domain, setSuccess }) {
 					>Join now!</button>
 				</div>
 				{errors.validate ? (<ErrorBlock msg={errors.emailError} />) : null}
+				{emailExist? (<ErrorBlock msg={emailExist} />): null}
 			</div>
 		)
 	}

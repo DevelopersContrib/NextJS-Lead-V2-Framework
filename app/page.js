@@ -2,13 +2,19 @@ import Image from 'next/image';
 import Logo from '@/components/logo';
 import Container from '@/components/Container';
 import Footer from '@/components/Footer';
+import UserWidget from '@/components/UserWidget';
 import FeaturedDomain from '@/components/FeaturedDomain';
-import { getData, getDomain, getTopsites, getScript } from '@/lib/data';
-import { FaMapLocationDot, FaUser } from "react-icons/fa6";
+import ScriptLoader from '@/components/ScriptLoader'
+import HeaderWidget from '@/components/HeaderWidget';
+import RelatedDomains from '@/components/RelatedDomains';
+import { getData, getDomain, getUserWidget, getScript, getRelatedDomains } from '@/lib/data';
+
 
 export default async function Home() {
   const c = await getData();
   const domain = getDomain();
+  const users = await getUserWidget();
+	const related_domains = await getRelatedDomains();
   const link = 'https://domaindirectory.com/servicepage/?domain=javapoint.com';
   const background = c.data.background_url !== undefined && c.data.background_url !== null ? c.data.background_url : 'https://cdn.vnoc.com/background/domains1.jpg';
   const description = c.data.description;
@@ -17,12 +23,14 @@ export default async function Home() {
   const fb_url = c.data.fb;
   const linkedin_url = c.data.linkedin;
   const follow_link = "https://www.contrib.com/signup/follow/" + domain;
-  const html = await getScript("https://e7lq80c199.execute-api.us-west-2.amazonaws.com/api1?key=5c1bde69a9e783c7edc2e603d8b25023&request=getcontent&url=" + domain)
+  const html = await getScript("https://e7lq80c199.execute-api.us-west-2.amazonaws.com/api1?key=5c1bde69a9e783c7edc2e603d8b25023&request=getcontent&url=" + domain);
+  const service = "<script type='text/javascript' src='https://tools.contrib.com/eservice?d="+domain+"&ver=2'></script>";
 
   const capitalizeDomain = domain.charAt(0).toUpperCase() + domain.slice(1).toLowerCase()
 
   return (
     <>
+      <HeaderWidget piwikId={c.data.piwikId} accountGA={c.data.accountGA} adsenseClientId={c.data.adsenseClientId}  />
       <section className="tw-bg-[#121212] tw-py-6 tw-text-white tw-text-sm tw-font-bold tw-relative">
         <div className="container text-center">
           We have interesting opportunities for work, sponsors and partnerships.
@@ -72,170 +80,8 @@ export default async function Home() {
                 {capitalizeDomain} Opportunity
               </h2>
             </div>
-            <div className="col-xl-4">
-              <div className="card text-bg-light mb-3">
-                <div className="card-header">Latest Contributors</div>
-                <div className="card-body tw-overflow-y-auto tw-max-h-[300px]">
-                  <ul className="list-unstyled">
-                    <li>
-                      <div className="d-flex mb-3">
-                        <div className="flex-shrink-0">
-                          <Image
-                            src="https://www.contrib.com/img/avatar0.jpg"
-                            width={40}
-                            height={40}
-                            alt=""
-                            className="tw-object-cover"
-                          />
-                        </div>
-                        <div className="flex-grow-1 ms-3">
-                          <ul className="list-inline mb-1">
-                            <li className="list-inline-item">
-                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white">
-                                Role Name
-                              </div>
-                            </li>
-                            <li className="list-inline-item">
-                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white ">
-                                Industry Name
-                              </div>
-                            </li>
-                          </ul>
-                          <p className="tw-text-xs mb-0">
-                            <FaMapLocationDot className="tw-mr-2 tw-text-gray-400" />
-                            Country
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="d-flex mb-3">
-                        <div className="flex-shrink-0">
-                          <Image
-                            src="https://www.contrib.com/img/avatar0.jpg"
-                            width={40}
-                            height={40}
-                            alt=""
-                            className="tw-object-cover"
-                          />
-                        </div>
-                        <div className="flex-grow-1 ms-3">
-                          <ul className="list-inline mb-1">
-                            <li className="list-inline-item">
-                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white">
-                                Role Name
-                              </div>
-                            </li>
-                            <li className="list-inline-item">
-                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white ">
-                                Industry Name
-                              </div>
-                            </li>
-                          </ul>
-                          <p className="tw-text-xs mb-0">
-                            <FaMapLocationDot className="tw-mr-2 tw-text-gray-400" />
-                            Country
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="d-flex mb-3">
-                        <div className="flex-shrink-0">
-                          <Image
-                            src="https://www.contrib.com/img/avatar0.jpg"
-                            width={40}
-                            height={40}
-                            alt=""
-                            className="tw-object-cover"
-                          />
-                        </div>
-                        <div className="flex-grow-1 ms-3">
-                          <ul className="list-inline mb-1">
-                            <li className="list-inline-item">
-                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white">
-                                Role Name
-                              </div>
-                            </li>
-                            <li className="list-inline-item">
-                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white ">
-                                Industry Name
-                              </div>
-                            </li>
-                          </ul>
-                          <p className="tw-text-xs mb-0">
-                            <FaMapLocationDot className="tw-mr-2 tw-text-gray-400" />
-                            Country
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="d-flex mb-3">
-                        <div className="flex-shrink-0">
-                          <Image
-                            src="https://www.contrib.com/img/avatar0.jpg"
-                            width={40}
-                            height={40}
-                            alt=""
-                            className="tw-object-cover"
-                          />
-                        </div>
-                        <div className="flex-grow-1 ms-3">
-                          <ul className="list-inline mb-1">
-                            <li className="list-inline-item">
-                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white">
-                                Role Name
-                              </div>
-                            </li>
-                            <li className="list-inline-item">
-                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white ">
-                                Industry Name
-                              </div>
-                            </li>
-                          </ul>
-                          <p className="tw-text-xs mb-0">
-                            <FaMapLocationDot className="tw-mr-2 tw-text-gray-400" />
-                            Country
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="d-flex mb-3">
-                        <div className="flex-shrink-0">
-                          <Image
-                            src="https://www.contrib.com/img/avatar0.jpg"
-                            width={40}
-                            height={40}
-                            alt=""
-                            className="tw-object-cover"
-                          />
-                        </div>
-                        <div className="flex-grow-1 ms-3">
-                          <ul className="list-inline mb-1">
-                            <li className="list-inline-item">
-                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white">
-                                Role Name
-                              </div>
-                            </li>
-                            <li className="list-inline-item">
-                              <div className="tw-inline-flex tw-bg-blue-500 tw-rounded-3xl tw-py-1 tw-px-4 tw-capitalize tw-text-xs tw-text-white ">
-                                Industry Name
-                              </div>
-                            </li>
-                          </ul>
-                          <p className="tw-text-xs mb-0">
-                            <FaMapLocationDot className="tw-mr-2 tw-text-gray-400" />
-                            Country
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <UserWidget users={users}/>
+            
             <div className="col-xl-8">
               <div className="row">
                 <div className="col-xl-4">
@@ -307,23 +153,8 @@ export default async function Home() {
               </div>
             </div>
             <div className="col-xl-12">
-              <marquee className="tw-space-x-2">
-                <a title="Hard.org" href="https://hard.org" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Hard.org </a>
-                <a title="Contingencyfees.com" href="https://contingencyfees.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Contingencyfees.com </a>
-                <a title="Netgrowers.com" href="https://netgrowers.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Netgrowers.com </a>
-                <a title="Bocabello.com" href="https://bocabello.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Bocabello.com </a>
-                <a title="Channelcards.com" href="https://channelcards.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Channelcards.com </a>
-                <a title="Indoorgame.com" href="https://indoorgame.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Indoorgame.com </a>
-                <a title="Miamivipclub.com" href="https://miamivipclub.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Miamivipclub.com </a>
-                <a title="Fardex.com" href="https://fardex.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Fardex.com </a>
-                <a title="Dublinchildcare.com" href="https://dublinchildcare.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Dublinchildcare.com </a>
-                <a title="Issuestv.com" href="https://issuestv.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Issuestv.com </a>
-                <a title="Vbarge.com" href="https://vbarge.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Vbarge.com </a>
-                <a title="Francechannel.com" href="https://francechannel.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Francechannel.com </a>
-                <a title="Elimostaert.com" href="https://elimostaert.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Elimostaert.com </a>
-                <a title="Businessperk.com" href="https://businessperk.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Businessperk.com </a>
-                <a title="Transveg.com" href="https://transveg.com" className="tw-sm tw-rounded-md p-2 tw-bg-black tw-text-white tw-no-underline tw-inline-flex" target="_blank"> Transveg.com </a>
-              </marquee>
+							<RelatedDomains domains={related_domains} />
+              
             </div>
           </div>
         </div>
@@ -349,6 +180,13 @@ export default async function Home() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="tw-py-24">
+        <div className="container">
+         
+            <ScriptLoader html={service} />
+          
         </div>
       </section>
       <Footer capitalizedomain={capitalizeDomain} domain={domain} twitter_url={twitter_url} fb_url={fb_url} linkedin_url={linkedin_url} />
