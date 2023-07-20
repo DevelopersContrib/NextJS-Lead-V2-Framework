@@ -9,7 +9,7 @@ const UserWidget = ({ users }) => {
                 <div className="card-body tw-overflow-y-auto tw-max-h-[300px]">
                     <ul className="list-unstyled">
                         {users.data.map((user) => (
-                            <li>
+                            <li key={user.Username}>
                                 <div className="d-flex mb-3">
                                     <div className="flex-shrink-0">
                                         <Image
