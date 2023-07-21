@@ -5,7 +5,10 @@ import { useEffect } from "react";
 const HeaderWidget = ({ piwikId, accountGA, adsenseClientId }) => {
  
 
-  const piwikScript = () => {
+  
+
+  useEffect(() => {
+    const piwikScript = () => {
     let script = document.createElement("script");
     script.async = true;
 
@@ -50,9 +53,6 @@ const HeaderWidget = ({ piwikId, accountGA, adsenseClientId }) => {
     document.getElementsByTagName("head")[0].appendChild(scriptCode);
   };
 
-  useEffect(() => {
-    
-
     if (piwikId) {
       piwikScript();
     }
@@ -69,7 +69,7 @@ const HeaderWidget = ({ piwikId, accountGA, adsenseClientId }) => {
     //   // Cleanup function to remove the script when the component is unmounted
     //   widgetContainer.removeChild(script);
     // };
-  }, []);
+  }, [piwikId, adsenseClientId, accountGA]);
   return null;
 };
 
