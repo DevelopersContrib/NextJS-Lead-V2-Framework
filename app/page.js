@@ -15,7 +15,8 @@ export default async function Home() {
   const domain = getDomain();
   const users = await getUserWidget();
 	const related_domains = await getRelatedDomains();
-  const link = 'https://domaindirectory.com/servicepage/?domain=javapoint.com';
+  const link = 'https://domaindirectory.com/servicepage/?domain='+domain;
+  const ctb_link = 'https://www.contrib.com/signup/firststep?domain='+domain;
   const background = c.data.background_url !== undefined && c.data.background_url !== null ? c.data.background_url : 'https://cdn.vnoc.com/background/domains1.jpg';
   const description = c.data.description;
   const title = c.data.title;
@@ -37,7 +38,7 @@ export default async function Home() {
           <a href={link} target="_blank" className="ms-2 tw-py-[3px!important] tw-text-blue-600 tw-no-underline">Inquire now</a>
         </div>
         <div className="d-none d-lg-block d-sm-none tw-absolute tw-right-[0.5%] tw-top-[5%]">
-          <a href="https://www.contrib.com/signup/firststep?domain=mrhog.com" target="_blank" className="btn btn-outline-secondary fnt-500 text-white">
+          <a href={ctb_link} target="_blank" className="btn btn-outline-secondary fnt-500 text-white">
             <Image
               src="https://cdn.vnoc.com/logos/badge-contrib-3.png"
               width="48"
