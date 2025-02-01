@@ -88,6 +88,12 @@ function LeadForm({ domain, setSuccess }) {
 						onClick={handleSubmit}
 					>Join now!</button>
 				</div>
+				<p className="tw-text-m tw-text-gray-400 tw-mt-2 tw-text-center">
+					Be part of a revolutionary ecosystem powered by CONTRIB tokens. Build, collaborate, and earn in ways youve never imagined.
+				</p>
+				<p className="tw-text-sm tw-text-gray-500 tw-mt-2 tw-text-center">
+    Your information is safe with us. <span className="tw-font-bold">We use industry-standard encryption.</span>
+  </p>
 				{errors.validate ? (<ErrorBlock msg={errors.emailError} />) : null}
 				{emailExist? (<ErrorBlock msg={emailExist} />): null}
 			</div>

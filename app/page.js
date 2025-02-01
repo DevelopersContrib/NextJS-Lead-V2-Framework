@@ -8,6 +8,9 @@ import ScriptLoader from '@/components/ScriptLoader'
 import HeaderWidget from '@/components/HeaderWidget';
 import RelatedDomains from '@/components/RelatedDomains';
 import { getData, getDomain, getUserWidget, getScript, getRelatedDomains } from '@/lib/data';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import StaticCTAButton from '@/components/LatestCTA';
+import FomoPopup from '@/components/TokenSalePopup';
 
 
 export default async function Home() {
@@ -31,165 +34,121 @@ export default async function Home() {
 
   return (
     <>
-      <HeaderWidget piwikId={c.data.piwikId} accountGA={c.data.accountGA} adsenseClientId={c.data.adsenseClientId}  />
-      <section className="tw-bg-[#121212] tw-py-6 tw-text-white tw-text-sm tw-font-bold tw-relative">
-        <div className="container text-center">
-          We have interesting opportunities for work, sponsors and partnerships.
-          <a href={link} target="_blank" className="ms-2 tw-py-[3px!important] tw-text-blue-600 tw-no-underline">Inquire now</a>
+    <div style={{ 
+          backgroundImage: `url('${background}')`          
+        }} 
+        className="tw-bg-black tw-bg-opacity-50 relative tw-w-full tw-bg-cover tw-bg-no-repeat tw-relative">
+
+      <HeaderWidget piwikId={c.data.piwikId} accountGA={c.data.accountGA} adsenseClientId={c.data.adsenseClientId} />
+      <section className="tw-bg-gray-800 tw-py-6 tw-text-white tw-text-sm tw-font-bold tw-relative">
+        <div className="tw-container tw-mx-auto tw-text-center">
+          We have interesting opportunities for work, sponsors, and partnerships.
+          <a href={link} target="_blank" className="tw-ml-2 tw-py-1 tw-text-blue-500 hover:tw-text-blue-400 tw-transition tw-duration-300">Inquire now</a>
         </div>
-        <div className="d-none d-lg-block d-sm-none tw-absolute tw-right-[0.5%] tw-top-[5%]">
-          <a href={ctb_link} target="_blank" className="btn btn-outline-secondary fnt-500 text-white">
+        <div className="tw-hidden lg:tw-block tw-absolute tw-right-2 tw-top-5">
+          <a href={ctb_link} target="_blank" className="tw-btn tw-btn-outline-secondary tw-font-medium tw-text-white tw-flex tw-items-center">
             <Image
               src="https://cdn.vnoc.com/logos/badge-contrib-3.png"
-              width="48"
-              height="48"
-              className="me-1"
-              alt=''
+              width="38"
+              height="38"
+              className="tw-mr-2"
+              alt='Claim Your CTB'
             />
             Claim Your CTB Now!
           </a>
         </div>
       </section>
       <section
-        style={{ backgroundImage: `url('${background}')` }}
-        className="tw-bg-cover tw-bg-no-repeat tw-relative tw-text-white tw-bg-[50%] tw-py-[150px] tw-flex tw-w-full tw-items-center"
+        style={{ 
+          height: '100vh' 
+        }}
+        className="tw-relative tw-text-white tw-bg-center tw-flex tw-w-full tw-items-center"
       >
-        <div className="tw-bg-[rgba(0,0,0,0.55)] tw-top-0 tw-left-0 tw-right-0 tw-bottom-0 tw-absolute"></div>
-        <div className="container tw-relative">
-          <div className="row tw-mb-8">
-            <div className="col-xl-12 tw-text-center">
-              <Logo domain={capitalizeDomain} logo={c.data.logo} />
-              <h5 className='tw-font-semibold text-capitalize mb-3'>
-                {title}
-              </h5>
-            </div>
-            <div className="col-xl-12">
-              <div className="row">
-                <div className="col-xl-6 offset-xl-3">
-                  <Container domain={capitalizeDomain} />
-                </div>
-              </div>
+        <div className="tw-bg-black tw-bg-opacity-50 tw-absolute tw-inset-0"></div>
+        <div className="tw-container tw-mx-auto tw-relative">
+          <div className="tw-mb-8 tw-text-center">
+            <Logo domain={capitalizeDomain} logo={c.data.logo} />
+            <h5 className='tw-font-semibold tw-capitalize tw-mb-3 tw-text-lg'>
+              {title}
+            </h5>
+          </div>
+          <div className="tw-flex tw-justify-center">
+            <div className="tw-w-full tw-max-w-xl">
+              <Container domain={capitalizeDomain} />
             </div>
           </div>
         </div>
       </section>
-      <section className='tw-py-24'>
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-12">
-              <h2 className='tw-font-medium tw-text-4xl text-center mb-5'>
-                {capitalizeDomain} Opportunity
-              </h2>
-            </div>
-            <UserWidget users={users}/>
-            
-            <div className="col-xl-8">
-              <div className="row">
-                <div className="col-xl-4">
-                  <div className="d-flex mb-3">
-                    <div className="flex-shrink-0">
-                      <Image
-                        src="https://cdn.vnoc.com/icons/icon-50x50-contrib-market2.png"
-                        width={50}
-                        height={50}
-                        alt=""
-                        className="tw-object-cover"
-                      />
-                    </div>
-                    <div className="flex-grow-1 ms-3">
-                      <h5>
-                        Contrib Marketplace
-                      </h5>
-                      <p className='small'>
-                        Browse Jobs, Ideas and Micro Tasks.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-4">
-                  <div className="d-flex mb-3">
-                    <div className="flex-shrink-0">
-                      <Image
-                        src="https://cdn.vnoc.com/icons/icon-50x50-contrib-contribute2.png"
-                        width={50}
-                        height={50}
-                        alt=""
-                        className="tw-object-cover"
-                      />
-                    </div>
-                    <div className="flex-grow-1 ms-3">
-                      <h5>
-                        Contribute
-                      </h5>
-                      <p className='small'>
-                        Contribute using your skills, services, apps and/or capital.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-4">
-                  <div className="d-flex mb-3">
-                    <div className="flex-shrink-0">
-                      <Image
-                        src="https://cdn.vnoc.com/icons/icon-50x50-contrib-money2.png"
-                        width={50}
-                        height={50}
-                        alt=""
-                        className="tw-object-cover"
-                      />
-                    </div>
-                    <div className="flex-grow-1 ms-3">
-                      <h5>
-                        Contrib Crypto Marketplace
-                      </h5>
-                      <p className='small'>
-                        Contribute to blockchain projects on premium urls today
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-12 tw-text-xl">
-                  We envision people around the world with complementary skills, passion, time and resources coworking online with targeted premium assets just like Freelance.net.
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-12">
-							<RelatedDomains domains={related_domains} />
-              
-            </div>
+      
+      <section className='tw-py-24 tw-bg-black tw-bg-opacity-50'>
+        <div className="tw-container tw-mx-auto tw-items-center">
+          <div className="tw-text-center tw-mb-8">
+            <h2 className='tw-text-4xl sm:tw-text-4xl tw-font-extrabold gradient-text'>
+              {capitalizeDomain} Opportunity
+            </h2>
           </div>
-        </div>
-      </section>
-      <FeaturedDomain domain={capitalizeDomain} />
-      <section className="tw-py-24">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-12">
-              <h2 className='tw-font-medium tw-text-4xl text-center mb-5'>
-                {capitalizeDomain} Team
-              </h2>
-            </div>
-            <div className="col-xl-12">
-              <p>
-                {capitalizeDomain} is a bit different than most startups. We are small, diverse team working remotely and loving what we do. We only cowork with others who also have this same passion.
-              </p>
-              <p>
-                {capitalizeDomain} seeks to contract and hire the best people and then trust them: it&apos;s the thinking behind the work at their own time policy.
-              </p>
-              <p>
-                The {capitalizeDomain} team loves building things and focus on being the most productive individual, not the amount of time spent in the office. We put a lot of effort into making {capitalizeDomain} a fun place to work for people who like getting things done. So if you&apos;re game with this then enter your email address and be a part of the global team.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="tw-py-24">
-        <div className="container">
          
-            <ScriptLoader html={service} />
-          
+          <div className="tw-flex tw-flex-wrap tw-justify-center tw-text-white tw-items-center">
+            <div className="tw-w-full lg:tw-w-2/3">
+              <div className="tw-flex tw-flex-wrap tw-justify-center">
+                {[
+                  {
+                    icon: "fas fa-briefcase",
+                    color: "tw-text-blue-500",
+                    title: "Contrib Marketplace",
+                    description: "Browse Crypto Tasks and Earn Crypto."
+                  },
+                  {
+                    icon: "fas fa-hands-helping",
+                    color: "tw-text-green-500",
+                    title: "Contribute",
+                    description: "Contribute using your skills, services, apps and/or capital."
+                  },
+                  {
+                    icon: "fas fa-coins",
+                    color: "tw-text-yellow-500",
+                    title: "Crypto Marketplace",
+                    description: "Contribute to blockchain projects on premium urls today."
+                  }
+                ].map((item, index) => (
+                  <div key={index} className="tw-w-full sm:tw-w-1/2 lg:tw-w-1/3 tw-mb-6 tw-px-4">
+                    <div className="tw-bg-gray-900 hover:tw-bg-black tw-rounded-lg tw-shadow-lg tw-p-6 tw-h-full tw-flex tw-flex-col tw-justify-between tw-transition-transform tw-duration-300 hover:tw-scale-105">
+                      <div className="tw-flex tw-items-center tw-mb-2">
+                        <div className="tw-flex-shrink-0">
+                          <i className={`${item.icon} tw-text-2xl ${item.color}`}></i>
+                        </div>
+                        <div className="tw-flex-grow tw-ml-3">
+                          <h5 className="tw-font-semibold tw-text-lg">{item.title}</h5>
+                          <p className='tw-text-sm tw-mt-1'>{item.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <div className="tw-w-full tw-text-xl tw-mt-4 tw-text-center">
+                  <p className="tw-text-gray-200 tw-mb-40">
+                    Join a global community of passionate individuals with diverse skills and resources, collaborating online with premium assets. Start your journey with {domain} today and unlock opportunities to earn and contribute to cutting-edge blockchain projects. Register now and be part of the future!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <StaticCTAButton /> 
+        <div className="tw-w-full tw-mt-10 tw-mb-10">
+          <RelatedDomains domains={related_domains} />
         </div>
       </section>
+      
+      <FeaturedDomain domain={capitalizeDomain} />
+     
+     
+             
+      
+
+      </div>
+      <FomoPopup />
       <Footer capitalizedomain={capitalizeDomain} domain={domain} twitter_url={twitter_url} fb_url={fb_url} linkedin_url={linkedin_url} />
     </>
   )
