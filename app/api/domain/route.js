@@ -7,7 +7,7 @@ export async function GET() {
 
   const domainName = host?.includes("localhost")
     ? process.env.NEXT_PUBLIC_VERCEL_URL
-    : `https://${host?.replace("www.", "")}`;
+    : `${host?.replace("www.", "")}`;
 
   return NextResponse.json({ domain: domainName });
 }
