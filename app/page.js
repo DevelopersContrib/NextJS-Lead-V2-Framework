@@ -1,16 +1,15 @@
-import Image from "next/image";
-import Logo from "@/components/logo";
 import Container from "@/components/Container";
-import Footer from "@/components/Footer";
-import UserWidget from "@/components/UserWidget";
 import FeaturedDomain from "@/components/FeaturedDomain";
-import ScriptLoader from "@/components/ScriptLoader";
+import Footer from "@/components/Footer";
 import HeaderWidget from "@/components/HeaderWidget";
-import RelatedDomains from "@/components/RelatedDomains";
-import { getData, getDomain, getUserWidget, getScript, getRelatedDomains } from "@/lib/data";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import StaticCTAButton from "@/components/LatestCTA";
-import FomoPopup from "@/components/TokenSalePopup";
+import Logo from "@/components/logo";
+import RelatedDomains from "@/components/RelatedDomains";
+import { getData, getDomain, getRelatedDomains, getScript, getUserWidget } from "@/lib/data";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import Image from "next/image";
+// import FomoPopup from "@/components/TokenSalePopup";
+import Notification from "@/components/notification/Notification";
 import BlogList from "@/modules/blog/BlogList";
 
 export default async function Home() {
@@ -175,7 +174,8 @@ export default async function Home() {
 
         <FeaturedDomain domain={capitalizeDomain} />
       </div>
-      <FomoPopup />
+      {/* <FomoPopup /> */}
+      <Notification />
       <Footer
         capitalizedomain={capitalizeDomain}
         domain={domain}
