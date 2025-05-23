@@ -1,42 +1,10 @@
 "use client";
 
-// Note:: Install Framer motion for animation and Tailwindcss for styling.
-
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckCheck, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-
-const notifications = [
-  {
-    id: 1,
-    message: "An honest marketer subscribed to",
-    highlight: "Business",
-    timestamp: "about 2 hours ago",
-    image: "https://randomuser.me/api/portraits/men/30.jpg"
-  },
-  {
-    id: 2,
-    message: "A new user joined",
-    highlight: "Premium Plan",
-    timestamp: "about 10 minutes ago",
-    image: "https://randomuser.me/api/portraits/men/32.jpg"
-  },
-  {
-    id: 3,
-    message: "Someone upgraded to",
-    highlight: "Enterprise",
-    timestamp: "just now",
-    image: "https://randomuser.me/api/portraits/women/44.jpg"
-  },
-  {
-    id: 4,
-    message: "A visitor from Berlin signed up for",
-    highlight: "Newsletter",
-    timestamp: "about 1 hour ago",
-    image: "https://randomuser.me/api/portraits/men/39.jpg"
-  }
-];
+import { fetchRssData } from "@/lib/hooks/fetchRss";
 
 const Notification = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,6 +13,19 @@ const Notification = () => {
   const [remaining, setRemaining] = useState(5000);
   const timerRef = useRef(null);
   const startTimeRef = useRef(null);
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    const loadRss = async () => {
+      const data = await fetchRssData();
+      setNotifications(data.slice(0, 5));
+    };
+
+    loadRss();
+    const interval = setInterval(loadRss, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (!isHovered && isVisible) {
@@ -59,7 +40,7 @@ const Notification = () => {
       }, remaining);
     }
     return () => clearTimeout(timerRef.current);
-  }, [isHovered, isVisible, currentIndex, remaining]);
+  }, [isHovered, isVisible, currentIndex, remaining, notifications.length]);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -80,7 +61,7 @@ const Notification = () => {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && notifications.length && (
         <motion.div
           key={notifications[currentIndex].id}
           initial={{ x: -400, opacity: 0 }}
@@ -101,8 +82,8 @@ const Notification = () => {
             {/* Image */}
             <div className="lg:tw-w-16 lg:tw-h-16 md:tw-w-12 md:tw-h-12 sm:tw-w-10 sm:tw-h-10 tw-rounded-full tw-overflow-hidden tw-flex-shrink-0 tw-border tw-border-gray-200">
               <Image
-                src={notifications[currentIndex].image}
-                alt="Map"
+                src={notifications[currentIndex].avatar}
+                alt={`image-${notifications[currentIndex].id}`}
                 width={64}
                 height={64}
                 className="tw-object-cover"
@@ -111,19 +92,16 @@ const Notification = () => {
             {/* Content */}
             <div className="tw-flex-1 tw-flex tw-flex-col tw-justify-center tw-mr-8 sm:tw-mr-6">
               <span className="lg:tw-text-base md:tw-text-sm sm:tw-text-xs tw-font-medium tw-text-[#3a3a7c]">
-                {notifications[currentIndex].message}{" "}
-                <span className="tw-text-orange-500 tw-font-semibold tw-underline underline-offset-2">
-                  {notifications[currentIndex].highlight}
-                </span>
+                {` Agent A bought ${notifications[currentIndex].description} Adao`}
               </span>
               <span className="tw-text-xs tw-text-[#7b7bb0] tw-mt-1">
-                {notifications[currentIndex].timestamp}
+                {notifications[currentIndex].pubDate}
               </span>
             </div>
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className={`tw-absolute tw-right-4 tw-top-1/2 -tw-translate-y-1/2 tw-p-1 tw-rounded-full tw-bg-transparent hover:tw-bg-gray-100 tw-transition-colors tw-text-gray-400 tw-border-none ${
+              className={`tw-absolute tw-right-4 tw-top-1/3 -tw-translate-y-1/2 tw-p-1 tw-rounded-full tw-bg-transparent hover:tw-bg-gray-100 tw-transition-colors tw-text-gray-400 tw-border-none ${
                 isHovered ? "tw-inline-flex" : "tw-hidden"
               } sm:tw-right-2`}
               aria-label="Close notification"

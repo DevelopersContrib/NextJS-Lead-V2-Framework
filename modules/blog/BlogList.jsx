@@ -9,15 +9,17 @@ const BlogList = ({ theme = "black" }) => {
   const { blog, loading } = useBlogStore();
   useFetchBlog();
 
-  const blogPost = blog.map((item) => ({
-    id: item.id,
-    slug: item.contents[0].title,
-    title: item.contents[0].title,
-    image_url: item.contents[0].imageUrl,
-    image_caption: item.contents[0].imageCaption,
-    createdAt: item.createdAt,
-    tags: item.contents[0].blogPostTags,
-  }));
+  const blogPost = blog.length
+    ? blog.map((item) => ({
+        id: item.id,
+        slug: item.contents[0].title,
+        title: item.contents[0].title,
+        image_url: item.contents[0].imageUrl,
+        image_caption: item.contents[0].imageCaption,
+        createdAt: item.createdAt,
+        tags: item.contents[0].blogPostTags,
+      }))
+    : [];
 
   const textColor = theme === "white" ? "tw-text-white" : "tw-text-black";
   const backgroundColor = theme === "white" ? "tw-bg-transparent" : "tw-bg-white";
