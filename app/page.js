@@ -71,19 +71,19 @@ export default async function Home() {
               </a>
             </div>
           </div>
-          <div className="tw-hidden lg:tw-block tw-absolute tw-right-4 tw-top-1/2 -tw-translate-y-1/2">
+          <div className="tw-hidden lg:tw-block tw-absolute tw-right-4 tw-top-0 tw-bottom-0 tw-flex tw-items-center">
             <a
               href={ctb_link}
               target="_blank"
-              className="tw-bg-yellow-400 hover:tw-bg-yellow-300 tw-text-black tw-px-4 tw-py-3 tw-rounded-full tw-font-bold tw-flex tw-items-center tw-gap-2 tw-shadow-lg tw-transition-all tw-duration-300 hover:tw-scale-105"
+              className="tw-bg-yellow-400 hover:tw-bg-yellow-300 tw-text-black tw-px-3 tw-py-2 tw-rounded-full tw-font-semibold tw-text-sm tw-flex tw-items-center tw-gap-2 tw-shadow-lg tw-transition-all tw-duration-300 hover:tw-scale-105"
             >
               <Image
                 src="https://cdn.vnoc.com/logos/badge-contrib-3.png"
-                width="24"
-                height="24"
+                width="20"
+                height="20"
                 alt="CTB Badge"
               />
-              Claim Your CTB Now!
+              Claim CTB
             </a>
           </div>
         </section>

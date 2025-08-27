@@ -127,16 +127,16 @@ export default function Footer({domain,twitter_url,fb_url,linkedin_url}) {
                       <Image
                         src="https://cdn.vnoc.com/logos/logo-RealtyDAO-light-1.png"
                         alt='realtydao.com'
-                        width={227}
-                        height={50}
+                        width={180}
+                        height={30}
                         className='img-fluid'
                       />
                     </a>
                   </li>
                   <li>
                     <a href="https://agentdao.com" className='tw-no-underline text-secondary tw-inline-block'>
-                      <Image
-                        src="https://cdn.vnoc.com/logos/logo-new-contrib-06-wyt.png"
+                      <img
+                        src="/images/logo-agentdao.png"
                         alt='agentdao.com'
                         width={161}
                         height={50}
