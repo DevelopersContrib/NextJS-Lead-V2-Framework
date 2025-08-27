@@ -8,7 +8,6 @@ import RelatedDomains from "@/components/RelatedDomains";
 import { getData, getDomain, getRelatedDomains, getScript, getUserWidget } from "@/lib/data";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Image from "next/image";
-// import FomoPopup from "@/components/TokenSalePopup";
 import Notification from "@/components/notification/Notification";
 import BlogList from "@/modules/blog/BlogList";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -54,130 +53,302 @@ export default async function Home() {
           accountGA={c.data.accountGA}
           adsenseClientId={c.data.adsenseClientId}
         />
-        <section className="tw-bg-gray-800 tw-py-6 tw-text-white tw-text-sm tw-font-bold tw-relative">
+        
+        {/* Top Banner */}
+        <section className="tw-bg-gradient-to-r tw-from-blue-600 tw-to-purple-600 tw-py-4 tw-text-white tw-text-sm tw-font-bold tw-relative">
           <div className="tw-container tw-mx-auto tw-text-center">
-            We have interesting opportunities for work, sponsors, and partnerships.
-            <a
-              href={link}
-              target="_blank"
-              className="tw-ml-2 tw-py-1 tw-text-blue-500 hover:tw-text-blue-400 tw-transition tw-duration-300"
-            >
-              Inquire now
-            </a>
+            <div className="tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-center tw-gap-4">
+              <div className="tw-flex tw-items-center tw-gap-2">
+                <i className="fas fa-rocket tw-text-yellow-300"></i>
+                <span>🚀 Premium Domain Opportunity - Join the Elite Network</span>
+              </div>
+              <a
+                href={link}
+                target="_blank"
+                className="tw-bg-white tw-text-blue-600 tw-px-4 tw-py-2 tw-rounded-full tw-font-semibold hover:tw-bg-gray-100 tw-transition-all tw-duration-300 tw-shadow-lg"
+              >
+                Explore Now →
+              </a>
+            </div>
           </div>
-          <div className="tw-hidden lg:tw-block tw-absolute tw-right-2 tw-top-5">
+          <div className="tw-hidden lg:tw-block tw-absolute tw-right-4 tw-top-1/2 -tw-translate-y-1/2">
             <a
               href={ctb_link}
               target="_blank"
-              className="tw-btn tw-btn-outline-secondary tw-font-medium tw-text-white tw-flex tw-items-center"
+              className="tw-bg-yellow-400 hover:tw-bg-yellow-300 tw-text-black tw-px-4 tw-py-3 tw-rounded-full tw-font-bold tw-flex tw-items-center tw-gap-2 tw-shadow-lg tw-transition-all tw-duration-300 hover:tw-scale-105"
             >
               <Image
                 src="https://cdn.vnoc.com/logos/badge-contrib-3.png"
-                width="38"
-                height="38"
-                className="tw-mr-2"
-                alt="Claim Your CTB"
+                width="24"
+                height="24"
+                alt="CTB Badge"
               />
               Claim Your CTB Now!
             </a>
           </div>
         </section>
+
+        {/* Hero Section */}
         <section
           style={{
-            height: "100vh",
+            minHeight: "100vh",
           }}
           className="tw-relative tw-text-white tw-bg-center tw-flex tw-w-full tw-items-center"
         >
-          <div className="tw-bg-black tw-bg-opacity-50 tw-absolute tw-inset-0"></div>
-          <div className="tw-container tw-mx-auto tw-relative">
-            <div className="tw-mb-8 tw-text-center">
+          <div className="tw-bg-black tw-bg-opacity-60 tw-absolute tw-inset-0"></div>
+          <div className="tw-container tw-mx-auto tw-relative tw-px-4">
+            <div className="tw-text-center tw-mb-12">
               <Logo
                 domain={capitalizeDomain}
                 logo={c.data.logo}
               />
-              <h5 className="tw-font-semibold tw-capitalize tw-mb-3 tw-text-lg">{title}</h5>
+              <h1 className="tw-font-bold tw-capitalize tw-mb-6 tw-text-3xl md:tw-text-5xl lg:tw-text-6xl tw-leading-tight">
+                {title || `Welcome to ${capitalizeDomain}`}
+              </h1>
+              <p className="tw-text-lg md:tw-text-xl tw-mb-8 tw-text-gray-200 tw-max-w-3xl tw-mx-auto tw-leading-relaxed">
+                {description || `Join the exclusive network of entrepreneurs, developers, and innovators leveraging premium domains to build the future of Web3 and blockchain technology.`}
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="tw-flex tw-flex-col sm:tw-flex-row tw-gap-4 tw-justify-center tw-items-center">
+                <a
+                  href={ctb_link}
+                  target="_blank"
+                  className="tw-bg-gradient-to-r tw-from-blue-600 tw-to-purple-600 hover:tw-from-blue-700 hover:tw-to-purple-700 tw-text-white tw-px-8 tw-py-4 tw-rounded-full tw-font-bold tw-text-lg tw-shadow-2xl tw-transition-all tw-duration-300 hover:tw-scale-105 tw-flex tw-items-center tw-gap-2"
+                >
+                  <i className="fas fa-rocket"></i>
+                  Start Your Journey
+                </a>
+                <a
+                  href="https://vnoc.com"
+                  target="_blank"
+                  className="tw-bg-transparent tw-border-2 tw-border-white hover:tw-bg-white hover:tw-text-black tw-text-white tw-px-8 tw-py-4 tw-rounded-full tw-font-bold tw-text-lg tw-transition-all tw-duration-300 tw-flex tw-items-center tw-gap-2"
+                >
+                  <i className="fas fa-info-circle"></i>
+                  Learn More
+                </a>
+              </div>
             </div>
+            
             <div className="tw-flex tw-justify-center">
-              <div className="tw-w-full tw-max-w-xl">
+              <div className="tw-w-full tw-max-w-2xl">
                 <Container domain={capitalizeDomain} />
               </div>
             </div>
           </div>
         </section>
 
-        <section className="tw-py-24 tw-bg-black tw-bg-opacity-50">
-          <div className="tw-container tw-mx-auto tw-items-center">
-            <div className="tw-text-center tw-mb-8">
-              <h2 className="tw-text-4xl sm:tw-text-4xl tw-font-extrabold gradient-text">
-                {capitalizeDomain} Opportunity
+        {/* Value Proposition Section */}
+        <section className="tw-py-24 tw-bg-gradient-to-b tw-from-gray-900 tw-to-black">
+          <div className="tw-container tw-mx-auto tw-px-4">
+            <div className="tw-text-center tw-mb-16">
+              <h2 className="tw-text-4xl md:tw-text-5xl tw-font-extrabold tw-text-white tw-mb-6">
+                Why Choose <span className="tw-text-transparent tw-bg-clip-text tw-bg-gradient-to-r tw-from-blue-400 tw-to-purple-400">{capitalizeDomain}</span>?
               </h2>
+              <p className="tw-text-xl tw-text-gray-300 tw-max-w-3xl tw-mx-auto">
+                Join a curated community of forward-thinking individuals building the next generation of digital assets and blockchain solutions.
+              </p>
             </div>
 
-            <div className="tw-flex tw-flex-wrap tw-justify-center tw-text-white tw-items-center">
-              <div className="tw-w-full lg:tw-w-2/3">
-                <div className="tw-flex tw-flex-wrap tw-justify-center">
-                  {[
-                    {
-                      icon: "fas fa-briefcase",
-                      color: "tw-text-blue-500",
-                      title: "Contrib Marketplace",
-                      description: "Browse Crypto Tasks and Earn Crypto.",
-                    },
-                    {
-                      icon: "fas fa-hands-helping",
-                      color: "tw-text-green-500",
-                      title: "Contribute",
-                      description: "Contribute using your skills, services, apps and/or capital.",
-                    },
-                    {
-                      icon: "fas fa-coins",
-                      color: "tw-text-yellow-500",
-                      title: "Crypto Marketplace",
-                      description: "Contribute to blockchain projects on premium urls today.",
-                    },
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="tw-w-full sm:tw-w-1/2 lg:tw-w-1/3 tw-mb-6 tw-px-4"
-                    >
-                      <div className="tw-bg-gray-900 hover:tw-bg-black tw-rounded-lg tw-shadow-lg tw-p-6 tw-h-full tw-flex tw-flex-col tw-justify-between tw-transition-transform tw-duration-300 hover:tw-scale-105">
-                        <div className="tw-flex tw-items-center tw-mb-2">
-                          <div className="tw-flex-shrink-0">
-                            <i className={`${item.icon} tw-text-2xl ${item.color}`}></i>
-                          </div>
-                          <div className="tw-flex-grow tw-ml-3">
-                            <h5 className="tw-font-semibold tw-text-lg">{item.title}</h5>
-                            <p className="tw-text-sm tw-mt-1">{item.description}</p>
-                          </div>
-                        </div>
-                      </div>
+            <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-8 tw-max-w-6xl tw-mx-auto">
+              {[
+                {
+                  icon: "fas fa-crown",
+                  color: "tw-text-yellow-400",
+                  title: "Premium Domain Access",
+                  description: "Exclusive access to high-value domains that can accelerate your project's success and credibility.",
+                  features: ["Domain Valuation", "Premium Listings", "Exclusive Access"]
+                },
+                {
+                  icon: "fas fa-users",
+                  color: "tw-text-blue-400",
+                  title: "Elite Community",
+                  description: "Connect with successful entrepreneurs, developers, and investors in the blockchain space.",
+                  features: ["Networking Events", "Expert Mentorship", "Collaboration Opportunities"]
+                },
+                {
+                  icon: "fas fa-chart-line",
+                  color: "tw-text-green-400",
+                  title: "Revenue Generation",
+                  description: "Multiple income streams through domain trading, development, and strategic partnerships.",
+                  features: ["Trading Profits", "Development Revenue", "Partnership Income"]
+                },
+                {
+                  icon: "fas fa-shield-alt",
+                  color: "tw-text-purple-400",
+                  title: "Risk Management",
+                  description: "Professional guidance and tools to minimize risks and maximize returns on your investments.",
+                  features: ["Market Analysis", "Risk Assessment", "Portfolio Diversification"]
+                },
+                {
+                  icon: "fas fa-rocket",
+                  color: "tw-text-red-400",
+                  title: "Fast-Track Growth",
+                  description: "Accelerate your project's development with proven strategies and resources.",
+                  features: ["Growth Strategies", "Resource Access", "Speed Optimization"]
+                },
+                {
+                  icon: "fas fa-globe",
+                  color: "tw-text-indigo-400",
+                  title: "Global Reach",
+                  description: "Access international markets and opportunities through our global network.",
+                  features: ["Global Network", "Market Access", "Cultural Insights"]
+                }
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="tw-bg-gray-800 hover:tw-bg-gray-700 tw-rounded-2xl tw-p-8 tw-h-full tw-flex tw-flex-col tw-justify-between tw-transition-all tw-duration-300 hover:tw-scale-105 hover:tw-shadow-2xl tw-border tw-border-gray-700 hover:tw-border-gray-600"
+                >
+                  <div>
+                    <div className="tw-flex tw-items-center tw-mb-4">
+                      <div className={`${item.icon} tw-text-3xl ${item.color} tw-mr-3`}></div>
+                      <h3 className="tw-font-bold tw-text-xl tw-text-white">{item.title}</h3>
                     </div>
-                  ))}
-                  <div className="tw-w-full tw-text-xl tw-mt-4 tw-text-center">
-                    <p className="tw-text-gray-200 tw-mb-40">
-                      Join a global community of passionate individuals with diverse skills and
-                      resources, collaborating online with premium assets. Start your journey with{" "}
-                      {domain} today and unlock opportunities to earn and contribute to cutting-edge
-                      blockchain projects. Register now and be part of the future!
-                    </p>
+                    <p className="tw-text-gray-300 tw-mb-6 tw-leading-relaxed">{item.description}</p>
+                  </div>
+                  
+                  <div className="tw-space-y-2">
+                    {item.features.map((feature, idx) => (
+                      <div key={idx} className="tw-flex tw-items-center tw-text-sm tw-text-gray-400">
+                        <i className="fas fa-check tw-text-green-400 tw-mr-2"></i>
+                        {feature}
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          </div>
-
-          <StaticCTAButton />
-          <ErrorBoundary>
-            <BlogList theme="white" />
-          </ErrorBoundary>
-          <div className="tw-w-full tw-mt-10 tw-mb-10">
-            <RelatedDomains domains={related_domains} />
           </div>
         </section>
 
+        {/* Social Proof Section */}
+        <section className="tw-py-20 tw-bg-black tw-bg-opacity-80">
+          <div className="tw-container tw-mx-auto tw-px-4">
+            <div className="tw-text-center tw-mb-16">
+              <h2 className="tw-text-4xl md:tw-text-5xl tw-font-extrabold tw-text-white tw-mb-6">
+                Trusted by Industry Leaders
+              </h2>
+              <p className="tw-text-xl tw-text-gray-300 tw-max-w-3xl tw-mx-auto">
+                Join thousands of successful entrepreneurs and developers who have already transformed their digital presence.
+              </p>
+            </div>
+
+            <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-8 tw-max-w-6xl tw-mx-auto tw-mb-16">
+              {[
+                { number: "10,000+", label: "Active Users", color: "tw-text-blue-400" },
+                { number: "$50M+", label: "Total Value", color: "tw-text-green-400" },
+                { number: "95%", label: "Success Rate", color: "tw-text-yellow-400" },
+                { number: "24/7", label: "Support", color: "tw-text-purple-400" }
+              ].map((stat, index) => (
+                <div key={index} className="tw-text-center">
+                  <div className={`tw-text-4xl md:tw-text-5xl tw-font-bold ${stat.color} tw-mb-2`}>
+                    {stat.number}
+                  </div>
+                  <div className="tw-text-gray-400 tw-font-medium">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Testimonials */}
+            <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-gap-8 tw-max-w-6xl tw-mx-auto">
+              {[
+                {
+                  name: "Sarah Chen",
+                  role: "Blockchain Developer",
+                  company: "TechCorp",
+                  content: "This platform transformed how I approach domain investments. The community insights are invaluable.",
+                  avatar: "https://i.pravatar.cc/150?img=1"
+                },
+                {
+                  name: "Marcus Rodriguez",
+                  role: "Entrepreneur",
+                  company: "StartupXYZ",
+                  content: "Found my perfect domain here and connected with amazing partners. ROI exceeded expectations.",
+                  avatar: "https://i.pravatar.cc/150?img=2"
+                },
+                {
+                  name: "Dr. Emily Watson",
+                  role: "Investor",
+                  company: "Venture Capital",
+                  content: "Professional platform with real opportunities. The due diligence tools saved me countless hours.",
+                  avatar: "https://i.pravatar.cc/150?img=3"
+                }
+              ].map((testimonial, index) => (
+                <div key={index} className="tw-bg-gray-800 tw-rounded-2xl tw-p-6 tw-border tw-border-gray-700">
+                  <div className="tw-flex tw-items-center tw-mb-4">
+                    <Image
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      width={50}
+                      height={50}
+                      className="tw-rounded-full tw-mr-4"
+                    />
+                    <div>
+                      <div className="tw-font-bold tw-text-white">{testimonial.name}</div>
+                      <div className="tw-text-sm tw-text-gray-400">{testimonial.role} at {testimonial.company}</div>
+                    </div>
+                  </div>
+                  <p className="tw-text-gray-300 tw-leading-relaxed">"{testimonial.content}"</p>
+                  <div className="tw-flex tw-text-yellow-400 tw-mt-4">
+                    {[...Array(5)].map((_, i) => (
+                      <i key={i} className="fas fa-star"></i>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Call to Action Section */}
+        <section className="tw-py-24 tw-bg-gradient-to-r tw-from-blue-600 tw-to-purple-600">
+          <div className="tw-container tw-mx-auto tw-px-4 tw-text-center">
+            <h2 className="tw-text-4xl md:tw-text-5xl tw-font-extrabold tw-text-white tw-mb-6">
+              Ready to Transform Your Digital Future?
+            </h2>
+            <p className="tw-text-xl tw-text-blue-100 tw-mb-8 tw-max-w-3xl tw-mx-auto">
+              Join the elite network of domain investors and blockchain innovators. Your premium domain opportunity awaits.
+            </p>
+            
+            <div className="tw-flex tw-flex-col sm:tw-flex-row tw-gap-4 tw-justify-center tw-items-center tw-mb-8">
+              <a
+                href={ctb_link}
+                target="_blank"
+                className="tw-bg-white tw-text-blue-600 hover:tw-bg-gray-100 tw-px-8 tw-py-4 tw-rounded-full tw-font-bold tw-text-lg tw-shadow-2xl tw-transition-all tw-duration-300 hover:tw-scale-105 tw-flex tw-items-center tw-gap-2"
+              >
+                <i className="fas fa-rocket"></i>
+                Get Started Now
+              </a>
+              <a
+                href={link}
+                target="_blank"
+                className="tw-bg-transparent tw-border-2 tw-border-white hover:tw-bg-white hover:tw-text-blue-600 tw-text-white tw-px-8 tw-py-4 tw-rounded-full tw-font-bold tw-text-lg tw-transition-all tw-duration-300 tw-flex tw-items-center tw-gap-2"
+              >
+                <i className="fas fa-play"></i>
+                Watch Demo
+              </a>
+            </div>
+            
+            <div className="tw-text-blue-100 tw-text-sm">
+              <i className="fas fa-clock tw-mr-2"></i>
+              Limited Time: First 100 members get exclusive access to premium domains
+            </div>
+          </div>
+        </section>
+
+        {/* Blog Section */}
+        <ErrorBoundary>
+          <BlogList theme="white" />
+        </ErrorBoundary>
+
+        {/* Related Domains */}
+        <div className="tw-w-full tw-mt-10 tw-mb-10">
+          <RelatedDomains domains={related_domains} />
+        </div>
+
         <FeaturedDomain domain={capitalizeDomain} />
       </div>
-      {/* <FomoPopup /> */}
+      
       <Notification />
       <Footer
         capitalizedomain={capitalizeDomain}

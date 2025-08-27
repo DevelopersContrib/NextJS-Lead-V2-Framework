@@ -8,6 +8,7 @@ export async function GET() {
   const content = `
 User-agent: *
 Allow: /
+Disallow: /stats
 
 Sitemap: https://${domain}/sitemap.xml
 `;

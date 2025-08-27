@@ -56,21 +56,25 @@ app/
 ├── sitemap.xml/       # SEO sitemap
 ├── staffing/          # Staffing page
 └── terms/             # Terms of service
+
 ```
 
 ### API Routes
 
 ```
+
 app/api/
 ├── domain/            # Domain-related API endpoints
 ├── fetcher/           # Data fetching endpoints
 ├── lead/              # Lead management endpoints
 └── rss-proxy/         # RSS feed proxy endpoints
+
 ```
 
 ### Core Components
 
 ```
+
 components/
 ├── Container.jsx              # Main content container
 ├── FeaturedDomain.jsx         # Featured domain showcase
@@ -90,20 +94,24 @@ components/
 ├── Thanku.jsx                 # Thank you page component
 └── notification/
     └── Notification.jsx       # Notification system
+
 ```
 
 ### Modules
 
 ```
+
 modules/
 └── blog/
     ├── BlogList.jsx           # Blog listing component
     └── slug.jsx               # Individual blog post component
+
 ```
 
 ### Library & Utilities
 
 ```
+
 lib/
 ├── data.jsx                   # Core data fetching functions
 ├── formatTimeAgo.js           # Time formatting utilities
@@ -118,6 +126,7 @@ lib/
 │   └── useFetcher.js          # General data fetching hook
 └── store/
     └── useBlogStore.js        # Blog state management (Zustand)
+
 ```
 
 ## Key Features

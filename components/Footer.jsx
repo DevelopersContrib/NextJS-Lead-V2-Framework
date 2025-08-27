@@ -52,6 +52,11 @@ export default function Footer({domain,twitter_url,fb_url,linkedin_url}) {
                     </a>
                   </li>
                   <li>
+                    <Link href="/stats" className='tw-no-underline text-secondary tw-inline-block tw-capitalize'>
+                      stats
+                    </Link>
+                  </li>
+                  <li>
                     <Link href={`https://domaindirectory.com/servicepage/?domain=${domain}`} className='tw-no-underline text-secondary tw-inline-block tw-capitalize'>
                       Build
                     </Link>
@@ -123,6 +128,17 @@ export default function Footer({domain,twitter_url,fb_url,linkedin_url}) {
                         src="https://cdn.vnoc.com/logos/logo-RealtyDAO-light-1.png"
                         alt='realtydao.com'
                         width={227}
+                        height={50}
+                        className='img-fluid'
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://agentdao.com" className='tw-no-underline text-secondary tw-inline-block'>
+                      <Image
+                        src="https://cdn.vnoc.com/logos/logo-new-contrib-06-wyt.png"
+                        alt='agentdao.com'
+                        width={161}
                         height={50}
                         className='img-fluid'
                       />
