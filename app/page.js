@@ -288,7 +288,7 @@ export default async function Home() {
                       <div className="tw-text-sm tw-text-gray-400">{testimonial.role} at {testimonial.company}</div>
                     </div>
                   </div>
-                  <p className="tw-text-gray-300 tw-leading-relaxed">"{testimonial.content}"</p>
+                  <p className="tw-text-gray-300 tw-leading-relaxed">&ldquo;{testimonial.content}&rdquo;</p>
                   <div className="tw-flex tw-text-yellow-400 tw-mt-4">
                     {[...Array(5)].map((_, i) => (
                       <i key={i} className="fas fa-star"></i>
