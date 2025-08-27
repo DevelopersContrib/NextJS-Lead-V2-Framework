@@ -11,6 +11,7 @@ import Image from "next/image";
 // import FomoPopup from "@/components/TokenSalePopup";
 import Notification from "@/components/notification/Notification";
 import BlogList from "@/modules/blog/BlogList";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 export default async function Home() {
   const c = await getData();
@@ -166,7 +167,9 @@ export default async function Home() {
           </div>
 
           <StaticCTAButton />
-          <BlogList theme="white" />
+          <ErrorBoundary>
+            <BlogList theme="white" />
+          </ErrorBoundary>
           <div className="tw-w-full tw-mt-10 tw-mb-10">
             <RelatedDomains domains={related_domains} />
           </div>

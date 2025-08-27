@@ -37,7 +37,7 @@ A Next.js-based framework for creating lead generation and community websites wi
 
 ### App Directory (App Router)
 
-```
+st
 app/
 ├── layout.js          # Root layout with metadata generation
 ├── page.js            # Homepage with dynamic content
