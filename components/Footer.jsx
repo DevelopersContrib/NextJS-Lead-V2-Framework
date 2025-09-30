@@ -135,7 +135,7 @@ export default function Footer({domain,twitter_url,fb_url,linkedin_url}) {
                   </li>
                   <li>
                     <a href="https://agentdao.com" className='tw-no-underline text-secondary tw-inline-block'>
-                      <img
+                      <Image
                         src="/images/logo-agentdao.png"
                         alt='agentdao.com'
                         width={161}

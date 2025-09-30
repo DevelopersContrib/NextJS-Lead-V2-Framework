@@ -5,18 +5,19 @@ import HeaderWidget from "@/components/HeaderWidget";
 import StaticCTAButton from "@/components/LatestCTA";
 import Logo from "@/components/logo";
 import RelatedDomains from "@/components/RelatedDomains";
-import { getData, getDomain, getRelatedDomains, getScript, getUserWidget } from "@/lib/data";
+import { getData, getDomain, getRelatedDomains, getScript, getUserWidget, getBlogData } from "@/lib/data";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Image from "next/image";
-import Notification from "@/components/notification/Notification";
+// import Notification from "@/components/notification/Notification";
 import BlogList from "@/modules/blog/BlogList";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
 export default async function Home() {
   const c = await getData();
-  const domain = getDomain();
+  const domain = await getDomain();
   const users = await getUserWidget();
   const related_domains = await getRelatedDomains();
+  const blogData = await getBlogData();
   const link = "https://domaindirectory.com/servicepage/?domain=" + domain;
   const ctb_link = "https://www.contrib.com/signup/firststep?domain=" + domain;
   const background =
@@ -338,7 +339,7 @@ export default async function Home() {
 
         {/* Blog Section */}
         <ErrorBoundary>
-          <BlogList theme="white" />
+          <BlogList theme="white" initialBlogData={blogData} />
         </ErrorBoundary>
 
         {/* Related Domains */}
@@ -349,7 +350,7 @@ export default async function Home() {
         <FeaturedDomain domain={capitalizeDomain} />
       </div>
       
-      <Notification />
+      {/* <Notification /> */}
       <Footer
         capitalizedomain={capitalizeDomain}
         domain={domain}

@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 import { ENV_VAR, getEnvVar } from "@/lib/getEnvVar";
 import { fetcher } from "@/lib/hooks/useFetcher";
+import { withMonitoring } from "@/lib/monitoring";
 
 const baseURL = getEnvVar(ENV_VAR.API_URL);
 
+const monitoredFetcher = withMonitoring(fetcher, 'api-fetcher');
+
 async function handleRequest(req, method) {
-  // console.log("Full request URL:", `${baseURL}${req.url}`);
   try {
     const { url, payload, config } =
       method === "GET"
@@ -20,15 +22,12 @@ async function handleRequest(req, method) {
       return NextResponse.json({ error: 'Missing "url" parameter' }, { status: 400 });
     }
 
-    // console.log("Request to fetcher:", { method, baseURL, url, payload, config });
-
-    const data = await fetcher(
+    const data = await monitoredFetcher(
       `${baseURL}${url}`,
       method === "GET" ? undefined : payload,
       method === "GET" && config ? JSON.parse(config) : { ...config, method }
     );
 
-    // console.log("Fetcher response data:", data);
     return NextResponse.json(data);
   } catch (error) {
     console.error(`Error in ${method} fetcher:`, error);

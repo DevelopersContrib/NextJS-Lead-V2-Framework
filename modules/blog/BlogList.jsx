@@ -6,12 +6,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const BlogList = ({ theme = "black" }) => {
-  const { blog, loading, error } = useBlogStore();
+const BlogList = ({ theme = "black", initialBlogData = null }) => {
+  const { blog, loading, error, setBlog } = useBlogStore();
   const [hasError, setHasError] = useState(false);
   const [isUsingFallback, setIsUsingFallback] = useState(false);
-  
+
+  // Always call the hook at component level
   useFetchBlog();
+
+  // Use server-side data if available
+  useEffect(() => {
+    if (initialBlogData && Array.isArray(initialBlogData) && initialBlogData.length > 0) {
+      setBlog(initialBlogData);
+      setIsUsingFallback(initialBlogData.some(item => item.id?.startsWith('vnoc-blog-') || item.author === 'VNOC Team'));
+    }
+  }, [initialBlogData, setBlog]);
 
   // Function to get a valid image URL with fallbacks
   const getValidImageUrl = (item) => {

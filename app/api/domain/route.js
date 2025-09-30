@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const headersList = headers();
+    const headersList = await headers();
     const host = headersList.get("host");
 
     let domainName = null;
