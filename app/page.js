@@ -41,6 +41,9 @@ export default async function Home() {
 
   const capitalizeDomain = domain.charAt(0).toUpperCase() + domain.slice(1).toLowerCase();
 
+  // Set to true to show the hero H1, false to hide
+  const showHeroTitle = false;
+
   return (
     <>
       <div
@@ -103,9 +106,11 @@ export default async function Home() {
                 domain={capitalizeDomain}
                 logo={c.data.logo}
               />
-              <h1 className="tw-font-bold tw-capitalize tw-mb-6 tw-text-3xl md:tw-text-5xl lg:tw-text-6xl tw-leading-tight">
-                {title || `Welcome to ${capitalizeDomain}`}
-              </h1>
+              {showHeroTitle && (
+                <h1 className="tw-font-bold tw-capitalize tw-mb-6 tw-text-3xl md:tw-text-5xl lg:tw-text-6xl tw-leading-tight">
+                  {title || `Welcome to ${capitalizeDomain}`}
+                </h1>
+              )}
               <p className="tw-text-lg md:tw-text-xl tw-mb-8 tw-text-gray-200 tw-max-w-3xl tw-mx-auto tw-leading-relaxed">
                 {description || `Join the exclusive network of entrepreneurs, developers, and innovators leveraging premium domains to build the future of Web3 and blockchain technology.`}
               </p>
@@ -144,7 +149,7 @@ export default async function Home() {
           <div className="tw-container tw-mx-auto tw-px-4">
             <div className="tw-text-center tw-mb-16">
               <h2 className="tw-text-4xl md:tw-text-5xl tw-font-extrabold tw-text-white tw-mb-6">
-                Why Choose <span className="tw-text-transparent tw-bg-clip-text tw-bg-gradient-to-r tw-from-blue-400 tw-to-purple-400">{capitalizeDomain}</span>?
+                Why Choose <span className="tw-bg-clip-text tw-bg-gradient-to-r tw-from-blue-400 tw-to-purple-400">{capitalizeDomain}</span>?
               </h2>
               <p className="tw-text-xl tw-text-gray-300 tw-max-w-3xl tw-mx-auto">
                 Join a curated community of forward-thinking individuals building the next generation of digital assets and blockchain solutions.
