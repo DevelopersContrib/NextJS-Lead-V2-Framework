@@ -1,6 +1,7 @@
 import './globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getData } from '@/lib/data';
+import First100FoundersModalWrapper from "@/components/First100FoundersModalWrapper";
 
 export const dynamic = 'force-dynamic';
 
@@ -53,7 +54,10 @@ export async function generateMetadata() {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <First100FoundersModalWrapper />
+      </body>
     </html>
   );
 }
