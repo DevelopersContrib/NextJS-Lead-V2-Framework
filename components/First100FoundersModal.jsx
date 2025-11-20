@@ -176,30 +176,26 @@ export const First100FoundersModal = ({
     setHasShown(true);
   };
 
-  // Default benefits
+  // Default benefits with static Tailwind color classes
   const defaultBenefits = benefits || [
     { 
-      icon: <Rocket className="w-8 h-8" />, 
+      icon: <Rocket className="w-8 h-8 tw-text-blue-300" />, 
       text: 'Full platform access on January 15, 2026', 
-      color: 'text-blue-300', 
       bg: 'from-blue-500/20 to-cyan-500/20' 
     },
     { 
-      icon: <Zap className="w-8 h-8" />, 
+      icon: <Zap className="w-8 h-8 tw-text-purple-300" />, 
       text: 'Auto-built contractor website with ALL AI agents', 
-      color: 'text-purple-300', 
       bg: 'from-purple-500/20 to-pink-500/20' 
     },
     { 
-      icon: <Crown className="w-8 h-8" />, 
+      icon: <Crown className="w-8 h-8 tw-text-yellow-300" />, 
       text: 'Early access to DomainFund Secret Auction', 
-      color: 'text-yellow-300', 
       bg: 'from-yellow-500/20 to-orange-500/20' 
     },
     { 
-      icon: <Sparkles className="w-8 h-8" />, 
+      icon: <Sparkles className="w-8 h-8 tw-text-pink-300" />, 
       text: 'Founders Badge & exclusive community access', 
-      color: 'text-pink-300', 
       bg: 'from-pink-500/20 to-red-500/20' 
     }
   ];
@@ -384,7 +380,7 @@ export const First100FoundersModal = ({
                   key={index}
                   className="tw-bg-white tw-bg-opacity-5 tw-rounded-2xl tw-shadow-lg tw-border tw-border-white/20 tw-px-6 tw-py-8 tw-flex tw-items-center tw-space-x-4 tw-transition-all tw-duration-300 hover:tw-scale-105 hover:tw-shadow-2xl"
                 >
-                  <div className={`tw-flex-shrink-0 ${benefit.color ? 'tw-' + benefit.color : 'tw-text-white'} tw-p-3 tw-bg-white/10 tw-rounded-xl tw-shadow-md`}>
+                  <div className="tw-flex-shrink-0 tw-p-3 tw-bg-white/10 tw-rounded-xl tw-shadow-md">
                     {benefit.icon}
                   </div>
                   <div>
