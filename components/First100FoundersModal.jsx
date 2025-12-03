@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Sparkles, Rocket, Crown, Zap, ArrowRight, Clock, CheckCircle } from 'lucide-react';
 
 /**
@@ -253,6 +254,7 @@ export const First100FoundersModal = ({
   // Early return if path is excluded (even before checking visibility)
   const currentPath = getPathname();
   const isExcluded = excludedPaths.some(path => currentPath.startsWith(path));
+
   if (isExcluded) {
     return null;
   }
@@ -264,33 +266,32 @@ export const First100FoundersModal = ({
 
   console.log('[First100FoundersModal] RENDERING MODAL NOW');
 
-  return (
+  // Use React Portal to render modal at document.body
+  const modalContent = (
     <div
-      className="fixed inset-0 w-full h-full"
+      className="fixed inset-0 w-full"
       style={{
         zIndex: zIndex || 99999,
         position: 'fixed',
         top: 0,
         left: 0,
-        right: 0,
-        bottom: 0,
         width: '100vw',
-        height: '100vh',
-        background: 'linear-gradient(to bottom right, #581c87, #1e3a8a, #312e81)', // fully opaque
-        overflow: 'hidden',
+        height: '100%',
+        minHeight: '100%',
+        background: 'linear-gradient(to bottom right, #581c87, #1e3a8a, #312e81)',
+        overflow: 'auto',
       }}
       data-testid="first100founders-modal"
     >
       {/* Content Container - scrollable only if content overflows */}
       <div
-        className="flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 overflow-y-auto"
+        className="flex flex-col items-center justify-center p-4 md:p-8 lg:p-12"
         style={{
           position: 'relative',
-          minHeight: '100vh',
+          minHeight: '100%',
           width: '100%',
           zIndex: 10,
           pointerEvents: 'auto',
-          maxHeight: '100vh',
         }}
       >
         {/* Decorative overlays and blobs */}
@@ -423,6 +424,11 @@ export const First100FoundersModal = ({
       </div>
     </div>
   );
+
+  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+    return createPortal(modalContent, document.body);
+  }
+  return null;
 };
 
 // Export default for easier imports
