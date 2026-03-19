@@ -41,8 +41,7 @@ export default async function Home() {
 
   const capitalizeDomain = domain.charAt(0).toUpperCase() + domain.slice(1).toLowerCase();
 
-  // Set to true to show the hero H1, false to hide
-  const showHeroTitle = false;
+  const showHeroTitle = true;
 
   return (
     <>
@@ -94,33 +93,79 @@ export default async function Home() {
 
         {/* Hero Section */}
         <section
-          style={{
-            minHeight: "100vh",
-          }}
-          className="tw-relative tw-text-white tw-bg-center tw-flex tw-w-full tw-items-center"
+          style={{ minHeight: "100vh" }}
+          className="tw-relative tw-text-white tw-bg-center tw-flex tw-w-full tw-items-center tw-overflow-hidden"
         >
-          <div className="tw-bg-black tw-bg-opacity-60 tw-absolute tw-inset-0"></div>
-          <div className="tw-container tw-mx-auto tw-relative tw-px-4">
-            <div className="tw-text-center tw-mb-12">
-              <Logo
-                domain={capitalizeDomain}
-                logo={c.data.logo}
-              />
+          {/* Layered gradient overlay */}
+          <div className="tw-absolute tw-inset-0 tw-bg-gradient-to-b tw-from-black tw-via-transparent tw-to-black tw-opacity-90"></div>
+          <div className="tw-absolute tw-inset-0 tw-bg-black tw-bg-opacity-60"></div>
+
+          {/* Decorative glow orbs */}
+          <div
+            style={{ filter: "blur(80px)" }}
+            className="tw-absolute tw-top-1/4 tw-left-1/4 tw-w-72 tw-h-72 tw-rounded-full tw-bg-blue-600 tw-opacity-20 tw-pointer-events-none"
+          ></div>
+          <div
+            style={{ filter: "blur(80px)" }}
+            className="tw-absolute tw-bottom-1/4 tw-right-1/4 tw-w-72 tw-h-72 tw-rounded-full tw-bg-purple-600 tw-opacity-20 tw-pointer-events-none"
+          ></div>
+          <div
+            style={{ filter: "blur(60px)" }}
+            className="tw-absolute tw-top-10 tw-right-1/3 tw-w-48 tw-h-48 tw-rounded-full tw-bg-pink-500 tw-opacity-10 tw-pointer-events-none"
+          ></div>
+
+          <div className="tw-container tw-mx-auto tw-relative tw-px-4 tw-py-20">
+            <div className="tw-text-center tw-mb-10">
+
+              {/* Status badge */}
+              <div className="tw-block tw-mb-8">
+                <div className="tw-inline-flex tw-items-center tw-gap-2 tw-bg-white tw-bg-opacity-10 tw-border tw-border-white tw-border-opacity-20 tw-rounded-full tw-px-5 tw-py-2 tw-text-sm tw-font-medium tw-text-gray-200">
+                  <span
+                    style={{ animation: "pulse 2s infinite" }}
+                    className="tw-w-2 tw-h-2 tw-rounded-full tw-bg-green-400 tw-inline-block"
+                  ></span>
+                  Premium Domain Platform — Now Accepting New Members
+                </div>
+              </div>
+
+              <div className="tw-flex tw-justify-center tw-mb-4">
+                <div style={{ maxWidth: "260px" }}>
+                  <Logo domain={capitalizeDomain} logo={c.data.logo} />
+                </div>
+              </div>
+
               {showHeroTitle && (
-                <h1 className="tw-font-bold tw-capitalize tw-mb-6 tw-text-3xl md:tw-text-5xl lg:tw-text-6xl tw-leading-tight">
-                  {title || `Welcome to ${capitalizeDomain}`}
+                <h1 className="tw-font-extrabold tw-capitalize tw-mb-6 tw-text-3xl md:tw-text-5xl lg:tw-text-6xl tw-leading-tight tw-tracking-tight">
+                  {title ? (
+                    <span className="tw-text-white">{title}</span>
+                  ) : (
+                    <>
+                      <span className="tw-text-white">Welcome to </span>
+                      <span
+                        style={{
+                          background: "linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundClip: "text",
+                        }}
+                      >
+                        {capitalizeDomain}
+                      </span>
+                    </>
+                  )}
                 </h1>
               )}
-              <p className="tw-text-lg md:tw-text-xl tw-mb-8 tw-text-gray-200 tw-max-w-3xl tw-mx-auto tw-leading-relaxed">
+
+              <p className="tw-text-lg md:tw-text-xl tw-mb-10 tw-text-gray-300 tw-max-w-2xl tw-mx-auto tw-leading-relaxed">
                 {description || `Join the exclusive network of entrepreneurs, developers, and innovators leveraging premium domains to build the future of Web3 and blockchain technology.`}
               </p>
 
               {/* CTA Buttons */}
-              <div className="tw-flex tw-flex-col sm:tw-flex-row tw-gap-4 tw-justify-center tw-items-center">
+              <div className="tw-flex tw-flex-col sm:tw-flex-row tw-gap-4 tw-justify-center tw-items-center tw-mb-10">
                 <a
                   href={ctb_link}
                   target="_blank"
-                  className="tw-bg-gradient-to-r tw-from-blue-600 tw-to-purple-600 hover:tw-from-blue-700 hover:tw-to-purple-700 tw-text-white tw-px-8 tw-py-4 tw-rounded-full tw-font-bold tw-text-lg tw-shadow-2xl tw-transition-all tw-duration-300 hover:tw-scale-105 tw-flex tw-items-center tw-gap-2"
+                  className="tw-bg-gradient-to-r tw-from-blue-500 tw-to-purple-600 hover:tw-from-blue-600 hover:tw-to-purple-700 tw-text-white tw-px-8 tw-py-4 tw-rounded-full tw-font-bold tw-text-lg tw-shadow-2xl tw-transition-all tw-duration-300 hover:tw-scale-105 tw-flex tw-items-center tw-gap-2"
                 >
                   <i className="fas fa-rocket"></i>
                   Start Your Journey
@@ -128,18 +173,71 @@ export default async function Home() {
                 <a
                   href="https://vnoc.com"
                   target="_blank"
-                  className="tw-bg-transparent tw-border-2 tw-border-white hover:tw-bg-white hover:tw-text-black tw-text-white tw-px-8 tw-py-4 tw-rounded-full tw-font-bold tw-text-lg tw-transition-all tw-duration-300 tw-flex tw-items-center tw-gap-2"
+                  className="tw-bg-white tw-bg-opacity-10 tw-border-2 tw-border-white tw-border-opacity-30 hover:tw-bg-opacity-20 tw-text-white tw-px-8 tw-py-4 tw-rounded-full tw-font-bold tw-text-lg tw-transition-all tw-duration-300 hover:tw-scale-105 tw-flex tw-items-center tw-gap-2"
                 >
                   <i className="fas fa-info-circle"></i>
                   Learn More
                 </a>
               </div>
+
+              {/* Trust indicators */}
+              <div className="tw-flex tw-flex-col sm:tw-flex-row tw-items-center tw-justify-center tw-gap-6 tw-text-sm tw-text-gray-400">
+                <div className="tw-flex tw-items-center tw-gap-2">
+                  <i className="fas fa-users tw-text-blue-400"></i>
+                  <span>10,000+ Members</span>
+                </div>
+                <div className="tw-hidden sm:tw-block tw-w-px tw-h-4 tw-bg-gray-600"></div>
+                <div className="tw-flex tw-items-center tw-gap-2">
+                  <i className="fas fa-shield-alt tw-text-green-400"></i>
+                  <span>Trusted & Secure</span>
+                </div>
+                <div className="tw-hidden sm:tw-block tw-w-px tw-h-4 tw-bg-gray-600"></div>
+                <div className="tw-flex tw-items-center tw-gap-2">
+                  <i className="fas fa-star tw-text-yellow-400"></i>
+                  <span>5-Star Rated</span>
+                </div>
+              </div>
             </div>
-            
+
+            {/* Lead form with glass card */}
             <div className="tw-flex tw-justify-center">
-              <div className="tw-w-full tw-max-w-2xl">
+              <div
+                style={{ backdropFilter: "blur(12px)" }}
+                className="tw-w-full tw-max-w-2xl tw-bg-white tw-bg-opacity-10 tw-rounded-3xl tw-p-1 tw-border tw-border-white tw-border-opacity-20 tw-shadow-2xl"
+              >
                 <Container domain={capitalizeDomain} />
               </div>
+            </div>
+
+            {/* Scroll indicator — mouse icon */}
+            <div className="tw-flex tw-justify-center tw-mt-16">
+              <div
+                style={{
+                  width: "28px",
+                  height: "44px",
+                  borderRadius: "14px",
+                  border: "2px solid rgba(255,255,255,0.4)",
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingTop: "6px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "4px",
+                    height: "8px",
+                    borderRadius: "2px",
+                    backgroundColor: "rgba(255,255,255,0.6)",
+                    animation: "scrollWheel 1.5s ease-in-out infinite",
+                  }}
+                ></div>
+              </div>
+              <style>{`
+                @keyframes scrollWheel {
+                  0%   { transform: translateY(0);   opacity: 1; }
+                  100% { transform: translateY(10px); opacity: 0; }
+                }
+              `}</style>
             </div>
           </div>
         </section>
